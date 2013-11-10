@@ -345,7 +345,8 @@ my $gor = GetOptions('n|top-n=n'   => \$opt_topn_tmp,
 		     'C|css=s' => \$opt_css_file,
 		     'q|quiet' => \$quiet_mode,
 		     'd|debug' => \$debug_mode,
-		     'name=s' => \$changelog_name);
+		     'name=s' => \$changelog_name,
+		     'descr=s' => \$changelog_description);
 
 if (@ARGV == 0 or $gor == 0) {
     print << "USAGE";
@@ -359,6 +360,7 @@ usage: chalow [options] <file> [file]...
     -q, --quiet                 quiet mode
     -d, --debug                 debug mode
     --name=NAME                 title of changelog
+    --descr=STRING              description of changelog
 USAGE
     ;
     exit;
