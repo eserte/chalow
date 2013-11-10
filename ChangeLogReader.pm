@@ -43,8 +43,20 @@ sub store_changelog_file {
     open(F, $fname) || die "file open error $fname : $!";
     binmode(F);
     my @entlines;
+    my $in_local_variables = 0;
     while (<F>) {
-	if (/^(\d{4}-\d\d-\d\d)/) {
+	if ($in_local_variables) {
+	    if (/^\s*End:$/) {
+		$in_local_variables = 0;
+		next;
+	    } else {
+		# ignore Local Variables line
+		next;
+	    }
+	} elsif (/^\s*Local Variables:$/) {
+	    $in_local_variables = 1;
+	    next;
+	} elsif (/^(\d{4}-\d\d-\d\d)/) {
 	    $self->store_entry(\@entlines) if (@entlines > 0);
 	    @entlines = ();
 	} elsif (/^\t?__DATA__.*$/) {
