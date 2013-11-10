@@ -1,0 +1,11 @@
+chalow is an (Emacs) ChangeLog to HTML converter
+
+Quick usage:
+
+    cd /path/to/chalow-directory
+    perl chalow --name "Title of the ChangeLog" --descr "Description of the ChangeLog" -c cl.en.conf /path/to/ChangeLog -o /path/to/output-directory
+    cp sample/diary.css /path/to/output-directory
+
+cl.conf is the original Japanese configuration file.
+
+cl.en.conf is an English variant and cl.de.conf a German variant.
